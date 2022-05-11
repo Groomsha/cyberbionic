@@ -23,7 +23,7 @@ class auth_window(QtWidgets.QWidget):
         text = self.auth.lineEdit.text()
         
         if len(text) > 0:
-            with open('data\\config.txt') as file:
+            with open('data/config.txt') as file:
                 reader = file.read()
 
             if text == reader:
