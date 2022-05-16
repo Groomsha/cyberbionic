@@ -4,15 +4,33 @@
 # ключ и, если он корректный, создайте экземпляр класса ProEditor, иначе Editor.
 # Вызовите методы просмотра и редактирования документов.
 
-while True:
-	number_one = int(input('Введите первое натуральное число: '))
-	number_two = int(input('Введите второе натуральное число: '))
-	print('='*40, end='\n\n')
 
-	if number_one < number_two:
-		for number in range(number_one, number_two + 1):
-			print(f'В диапазоне натуральное число: {number}')
-		break
-	else:
-		print('\nПервое натуральное число не может быть больше второго. Повторите ввод.')
-		print('=' * 70, end='\n\n')
+class Editor:
+	def view_document(self) -> None:
+		pass
+
+	def edit_document(self) -> None:
+		print('\nредактирование документов недоступно для бесплатной версии')
+		print('*'*60)
+
+
+class ProEditor(Editor):
+	def edit_document(self) -> None:
+		print('\nредактирование документов доступно')
+		print('*'*40)
+
+
+if __name__ in '__main__':
+	editor = None
+
+	while True:
+		print(f'\nлицензионный ключ: LTXT\n')
+
+		editor_check = str(input('Введите Free для обычной версий.\nВведите лицензионный ключ для Pro.\nИли Exit\n->'))
+
+		if editor_check.upper() == 'LTXT':
+			editor = ProEditor().edit_document()
+		elif editor_check.lower() == 'free':
+			editor = Editor().edit_document()
+		elif editor_check.lower() == 'exit':
+			break
