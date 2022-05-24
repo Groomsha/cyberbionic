@@ -2,24 +2,50 @@
 # деление и возведение в степень. Программа должна выдавать сообщения об ошибке и продолжать работу при вводе
 # некорректных данных, делении на ноль и возведении нуля в отрицательную степень.
 
+from typing import List, Tuple, Any
 
-class English:
+
+class Result:
+	def __init__(self) -> None:
+		pass
+
 	@staticmethod
-	def greeting() -> None:
-		print('Glory to Ukraine. Glory to heroes!')
+	def get_result(equation: Tuple) -> Any:
+		op = equation[2]
 
+		if '.' in equation[0] or '.' in equation[1]:
+			a = float(equation[0])
+			b = float(equation[1])
+		else:
+			a = int(equation[0])
+			b = int(equation[1])
 
-class Spanish:
-	@staticmethod
-	def greeting() -> None:
-		print('Gloria a Ucrania. ¡Gloria a los héroes!')
+		try:
+			res_dict = {
+				'+': a+b,
+				'-': a-b,
+				'*': a*b,
+				'/': a/b,
+				'**': a**b,
+			}
+		except ZeroDivisionError:
+			return 'Деление на "0" не допустимо!'
+
+		return res_dict.get(op)
 
 
 if __name__ == '__main__':
-	def hello_friend():
-		eng_speak.greeting()
-		spa_speak.greeting()
+	operations: List = ['+', '-', '*', '/', '**']
+	calc = Result()
 
-	eng_speak = English()
-	spa_speak = Spanish()
-	hello_friend()
+	while True:
+		print('Доступны такие операций вычисления: +, -, *, /, **\nДля выхода введите "q"', end='\n\n')
+		op = input('Выберите операцию: ')
+
+		if op in operations:
+			a = input('Введите первое число: ')
+			b = input('Введите второе число: ')
+			print('\n', calc.get_result((a, b, op)), end='\n')
+
+		if op.lower() == 'q':
+			break

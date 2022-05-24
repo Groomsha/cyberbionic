@@ -1,26 +1,21 @@
 # Опишите свой класс исключения. Напишите функцию, которая будет выбрасывать данное исключение,
 # если пользователь введёт определённое значение, и перехватите это исключение при вызове функции.
 
-
-class Base:
+class YearException(Exception):
 	def __init__(self) -> None:
 		pass
 
-	def method(self) -> str:
-		return "Hello from Base"
+	def __str__(self) -> str:
+		return f"Недопустимое значение:"
 
 
-class Child(Base):
-	def __init__(self) -> None:
-		super(Child, self).__init__()
-
-	def method(self) -> str:
-		return 'Hello from Child'
+class YouYear:
+	def __init__(self, year: int) -> None:
+		if year == 2022:
+			self.__year: int = year
+		else:
+			raise YearException
 
 
 if __name__ == '__main__':
-	base = Base()
-	child = Child()
-
-	print(base.method(), end='\n')
-	print(child.method())
+	my_year = YouYear(2021)
