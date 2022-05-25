@@ -2,7 +2,7 @@
 
 if __name__ == '__main__':
 	homework = 'Реализуйте цикл, который будет перебирать все значения итерабельного объекта iterable'
-	iterable = iter(reversed(homework))
+	iterable = iter(homework[::-1])
 
 	while True:
 		try:

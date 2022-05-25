@@ -96,10 +96,14 @@ class MyList(object):
     def __iter__(self):
         return MyList._Iterator(self)
 
+    def delete_element(self):
+        self._head = None
+
 
 def main():
     # Создание списка
     my_list = MyList([1, 2, 5])
+    my_list.delete_element()
 
     # Вывод длины списка
     print(len(my_list))
